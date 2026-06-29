@@ -1,0 +1,80 @@
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.back-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(251, 191, 36, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.back-button:hover::before {
+    opacity: 1;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(251, 191, 36, 0.3);
+    transform: translateX(-3px);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(251, 191, 36, 0.2);
+}
+
+.back-button:active {
+    transform: translateX(-1px) scale(0.98);
+}
+
+.back-icon {
+    font-size: 1.25rem;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.back-button:hover .back-icon {
+    transform: translateX(-3px);
+}
+
+.back-text {
+    font-family: var(--font-family);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .back-button {
+        padding: 0.625rem 1rem;
+        font-size: 0.9rem;
+        gap: 0.4rem;
+    }
+
+    .back-icon {
+        font-size: 1.1rem;
+    }
+}
+

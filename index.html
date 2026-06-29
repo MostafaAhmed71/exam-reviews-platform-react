@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#193064" />
+  <meta name="apple-mobile-web-app-title" content="منصة المراجعات" />
+  <meta name="description" content="منصة المراجعات النهائية - متوسطة وثانوية نخبة الشمال الأهلية" />
+  <title>منصة المراجعات النهائية - متوسطة وثانوية نخبة الشمال الأهلية</title>
+  
+  <!-- Security Headers -->
+  <!-- Note: frame-ancestors and X-Frame-Options must be set via HTTP headers, not meta tags -->
+  <!-- They are set in .htaccess (Hostinger) and _headers/netlify.toml (Netlify) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; media-src 'self' https: blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://northelite0.com; frame-src 'self' https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- MathJax Configuration - External file to avoid unsafe-inline -->
+  <script src="/mathjax-config.js"></script>
+  <!-- MathJax script with integrity hash for security -->
+  <script 
+    id="MathJax-script" 
+    async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+    crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

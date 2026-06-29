@@ -1,0 +1,53 @@
+.floating-telegram-bot {
+    position: fixed;
+    z-index: 10000;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(0.75rem, env(safe-area-inset-left));
+    pointer-events: none;
+    max-width: min(100vw - 1.5rem, 320px);
+}
+
+.floating-telegram-bot__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    direction: ltr;
+    pointer-events: auto;
+}
+
+.floating-telegram-bot .telegram-bot-link--fab {
+    flex-shrink: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.floating-telegram-bot__hint {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    direction: rtl;
+    text-align: right;
+    padding: 0.5rem 0.65rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #193064;
+    border-radius: 0.65rem;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(25, 48, 100, 0.12);
+    line-height: 1.35;
+}
+
+.floating-telegram-bot__hint-title {
+    font-weight: 800;
+    font-size: 0.82rem;
+}
+
+.floating-telegram-bot__hint-text {
+    font-size: 0.72rem;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+@media (max-width: 380px) {
+    .floating-telegram-bot__hint-text {
+        font-size: 0.68rem;
+    }
+}

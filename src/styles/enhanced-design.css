@@ -1,0 +1,376 @@
+/* ============================================
+   Enhanced Design Styles - بدون تدرجات
+   ============================================ */
+
+/* 1. أنماط هندسية للخلفيات */
+.geometric-pattern-lines {
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(251, 191, 36, 0.03) 10px,
+            rgba(251, 191, 36, 0.03) 20px
+        );
+}
+
+.geometric-pattern-dots {
+    background-image: 
+        radial-gradient(circle, rgba(251, 191, 36, 0.08) 1px, transparent 1px);
+    background-size: 25px 25px;
+}
+
+.geometric-pattern-grid {
+    background-image: 
+        linear-gradient(rgba(251, 191, 36, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(251, 191, 36, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* 2. بطاقات محسنة */
+.card-enhanced {
+    background: rgba(25, 48, 100, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(251, 191, 36, 0.2);
+    border-radius: 1.5rem;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(251, 191, 36, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-enhanced:hover {
+    border-color: rgba(251, 191, 36, 0.4);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 2px rgba(251, 191, 36, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* 3. أزرار محسنة */
+.button-enhanced {
+    background: #3b82f6;
+    border: 2px solid #60a5fa;
+    box-shadow: 
+        0 4px 15px rgba(59, 130, 246, 0.4),
+        0 0 20px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.button-enhanced:hover {
+    box-shadow: 
+        0 6px 20px rgba(59, 130, 246, 0.5),
+        0 0 30px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.button-enhanced:active {
+    box-shadow: 
+        0 2px 10px rgba(59, 130, 246, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+}
+
+/* 4. ظلال ملونة متعددة الطبقات */
+.shadow-multi-layer {
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(251, 191, 36, 0.15);
+}
+
+.shadow-colored {
+    box-shadow: 
+        0 4px 20px rgba(251, 191, 36, 0.3),
+        0 0 0 1px rgba(251, 191, 36, 0.2),
+        0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 5. خلفيات بطبقات */
+.layered-background {
+    position: relative;
+}
+
+.layered-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(251, 191, 36, 0.05);
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.5;
+}
+
+.layered-background::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: rgba(251, 191, 36, 0.1);
+    border-radius: inherit;
+    z-index: -2;
+    filter: blur(25px);
+    opacity: 0.3;
+}
+
+/* 6. تأثيرات تفاعلية */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+
+.ripple-effect:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.shine-effect:hover::before {
+    left: 100%;
+}
+
+/* 7. جزيئات متحركة بسيطة */
+.particle-simple {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(251, 191, 36, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+    animation: floatSimple 3s ease-in-out infinite;
+}
+
+@keyframes floatSimple {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 1;
+    }
+}
+
+/* 8. خطوط متحركة */
+.animated-lines {
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(251, 191, 36, 0.1) 2px,
+            rgba(251, 191, 36, 0.1) 4px
+        );
+    background-size: 100% 20px;
+    animation: slideLines 10s linear infinite;
+}
+
+@keyframes slideLines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 20px;
+    }
+}
+
+/* 9. حدود مضيئة */
+.border-glow {
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    box-shadow: 
+        0 0 10px rgba(251, 191, 36, 0.2),
+        inset 0 0 10px rgba(251, 191, 36, 0.1);
+    transition: all 0.3s ease;
+}
+
+.border-glow:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 
+        0 0 20px rgba(251, 191, 36, 0.4),
+        inset 0 0 20px rgba(251, 191, 36, 0.2);
+}
+
+/* 10. نص محسن */
+.text-enhanced {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+}
+
+.heading-shadow {
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+/* 11. Focus States محسنة */
+.focus-enhanced:focus-visible {
+    outline: 3px solid rgba(251, 191, 36, 0.6);
+    outline-offset: 2px;
+    box-shadow: 
+        0 0 0 4px rgba(251, 191, 36, 0.2),
+        0 4px 20px rgba(251, 191, 36, 0.3);
+}
+
+/* 12. تحسينات للهواتف */
+@media (hover: none) and (pointer: coarse) {
+    .touch-optimized {
+        min-height: 48px;
+        min-width: 48px;
+        padding: 1rem;
+    }
+    
+    .touch-optimized:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+/* 13. تحسينات الأداء */
+.will-change-transform {
+    will-change: transform;
+}
+
+.will-change-opacity {
+    will-change: opacity;
+}
+
+/* 14. خلفيات بديلة بدون تدرج */
+.bg-solid-overlay {
+    background-color: rgba(251, 191, 36, 0.1);
+    border: 2px solid rgba(251, 191, 36, 0.3);
+}
+
+.bg-pattern-diagonal {
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(251, 191, 36, 0.02) 0px,
+            rgba(251, 191, 36, 0.02) 1px,
+            transparent 1px,
+            transparent 20px
+        );
+}
+
+/* 15. تأثيرات بسيطة للبطاقات */
+.card-hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(251, 191, 36, 0.25);
+}
+
+/* 16. ألوان محسنة */
+.color-accent-solid {
+    color: #fbbf24;
+    text-shadow: 
+        0 0 15px rgba(251, 191, 36, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bg-accent-solid {
+    background-color: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* 17. تحسينات Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(25, 48, 100, 0.5);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(251, 191, 36, 0.3);
+    border-radius: 4px;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(251, 191, 36, 0.5);
+}
+
+/* 18. تأثيرات انتقالية سلسة */
+.transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-bounce {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 19. تحسينات للصور */
+.image-enhanced {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    transition: filter 0.3s ease;
+}
+
+.image-enhanced:hover {
+    filter: drop-shadow(0 8px 20px rgba(251, 191, 36, 0.4));
+}
+
+/* 20. أنماط متجاوبة */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+

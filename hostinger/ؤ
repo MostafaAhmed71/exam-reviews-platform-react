@@ -1,0 +1,1 @@
+curl -I https://your-domain.com | grep -i "content-security-policy"

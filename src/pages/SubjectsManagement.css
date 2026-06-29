@@ -1,0 +1,440 @@
+.subjects-management {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subjects-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.subjects-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.stage-selection {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.stage-btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid #3b82f6;
+    background: #ffffff;
+    color: #3b82f6;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stage-btn:hover {
+    background: #eff6ff;
+}
+
+.stage-btn.active {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+.subjects-message {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.subjects-message.success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.subjects-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.subjects-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.add-subject-btn {
+    padding: 0.75rem 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f8fafc;
+    border-radius: 1rem;
+    border: 2px dashed #cbd5e1;
+}
+
+.empty-text {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+
+.subjects-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.subject-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.subject-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.subject-info {
+    flex: 1;
+}
+
+.subject-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.subject-grades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.grades-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.grade-badge {
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.subject-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.subject-edit-btn,
+.subject-delete-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.subject-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(25, 48, 100, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.subject-modal {
+    background: rgba(30, 58, 138, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.4),
+        0 10px 10px -5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.form-label::before {
+    content: '📝';
+    font-size: 1.1rem;
+}
+
+.form-group:last-of-type .form-label::before {
+    content: '📚';
+}
+
+.form-input {
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #ffffff;
+    color: #0f172a;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-input::placeholder {
+    color: #94a3b8;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #60a5fa;
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 
+        0 0 0 4px rgba(96, 165, 250, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.grades-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.grade-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(139, 92, 246, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.grade-checkbox:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.grade-checkbox:hover::before {
+    opacity: 1;
+}
+
+.grade-checkbox input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    accent-color: #3b82f6;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.grade-checkbox span {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.grade-checkbox input[type="checkbox"]:checked + span {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+.grade-checkbox:has(input[type="checkbox"]:checked) {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+}
+
+.grade-checkbox:has(input[type="checkbox"]:checked)::before {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.3));
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .subjects-management {
+        padding: 1.5rem 1rem;
+    }
+
+    .subjects-title {
+        font-size: 1.5rem;
+    }
+
+    .subject-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .subject-actions {
+        width: 100%;
+    }
+
+    .subject-edit-btn,
+    .subject-delete-btn {
+        flex: 1;
+    }
+
+    .grades-checkboxes {
+        grid-template-columns: 1fr;
+    }
+}
+

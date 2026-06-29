@@ -1,0 +1,45 @@
+/* Review Type Selection */
+.review-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.review-type-btn {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.review-type-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.review-type-btn.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(245, 158, 11, 0.15); /* لون ثابت بدون تدرج */
+    box-shadow: 
+        0 4px 16px rgba(245, 158, 11, 0.4),
+        0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.review-type-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.review-icon {
+    font-size: 1.5rem;
+}

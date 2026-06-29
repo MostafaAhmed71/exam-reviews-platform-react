@@ -1,0 +1,477 @@
+.admin-upload {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+}
+
+/* Header */
+.admin-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2.5rem 0;
+    background: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.admin-header-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.admin-subjects-button,
+.admin-materials-button,
+.admin-electronic-button,
+.admin-test-builder-button,
+.admin-exit-button {
+    width: auto;
+    min-width: 180px;
+}
+
+.admin-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fbbf24; /* لون ذهبي ثابت */
+    text-shadow: 
+        0 0 20px rgba(245, 158, 11, 0.6),
+        0 2px 8px rgba(0, 0, 0, 0.4);
+    margin: 0;
+}
+
+.admin-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Upload Form */
+.upload-form {
+    background: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    border: var(--glass-border);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Grade Selection */
+.grade-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.grade-btn {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.grade-btn.selected {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.grade-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Subject Select */
+/* iOS Safari input fix - prevent zoom on focus */
+.form-input,
+.form-textarea,
+.subject-select,
+input[type="text"],
+input[type="file"],
+textarea,
+select {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.subject-select {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f8fafc' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 1.5rem center;
+    padding-left: 3.5rem;
+    padding-right: 1.5rem;
+}
+
+.subject-select option {
+    background: #193064;
+    color: var(--text-primary);
+    padding: 0.5rem;
+}
+
+.subject-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-input:disabled,
+.form-textarea:disabled,
+.subject-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loading-subjects {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.no-subjects-message {
+    padding: 2rem;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.no-subjects-message p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.manage-subjects-btn {
+    margin-top: 0.5rem;
+}
+
+/* Form Input and Textarea */
+.form-input {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+/* File Drop Zone */
+.file-drop-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.01);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-drop-zone:hover {
+    border-color: var(--primary-color);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.file-drop-zone.dragging {
+    border-color: var(--accent-color);
+    background: rgba(245, 158, 11, 0.1);
+    transform: scale(1.02);
+}
+
+.file-drop-zone.has-file {
+    border-style: solid;
+    border-color: var(--accent-color);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+/* Review Type Selection (from snippet insertion previously, making sure it matches) */
+.review-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.review-type-btn {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.review-type-btn.selected {
+    background: rgba(37, 99, 235, 0.2);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+}
+
+/* File Preview */
+.file-preview {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.file-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.file-info {
+    flex: 1;
+    text-align: right;
+}
+
+.file-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.file-size {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Upload Button overrides */
+.upload-btn {
+    margin-top: 1rem;
+    font-size: 1.2rem !important;
+    padding: 1.5rem !important;
+    background-color: var(--primary-color) !important; /* لون أزرق ثابت */
+    box-shadow: 
+        0 8px 20px rgba(59, 130, 246, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.upload-btn:hover:not(:disabled) {
+    box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Upload Progress */
+.progress-section {
+    background: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow-lg);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #3b82f6,
+        #60a5fa,
+        #fbbf24,
+        #f59e0b
+    );
+    background-size: 200% 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    animation: progress-shimmer 2s infinite;
+}
+
+@keyframes progress-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.progress-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.progress-details {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0;
+}
+
+/* Recent Uploads */
+.recent-uploads {
+    margin-top: 4rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.upload-item {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.upload-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(-8px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grade-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .upload-form {
+        padding: 1.5rem;
+    }
+
+    .file-drop-zone {
+        padding: 2rem 1rem;
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grade-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-type-grid {
+        grid-template-columns: 1fr;
+    }
+}

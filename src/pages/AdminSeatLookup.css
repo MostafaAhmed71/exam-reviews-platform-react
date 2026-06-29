@@ -1,0 +1,200 @@
+.admin-seat-lookup-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-seat-lookup-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.admin-seat-lookup-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.admin-seat-lookup-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.admin-seat-lookup-content {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-type-selector {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.search-type-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.75rem;
+    text-align: right;
+}
+
+.search-type-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.search-type-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: white;
+    color: #6b7280;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.search-type-btn:hover:not(:disabled) {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.search-type-btn.active {
+    border-color: #3b82f6;
+    background: #3b82f6;
+    color: white;
+}
+
+.search-type-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.admin-result-card {
+    border-left: 4px solid #3b82f6;
+    background: #f8fafc;
+}
+
+.highlight-row {
+    background: #eff6ff;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-bottom: none !important;
+}
+
+.highlight-value {
+    color: #1e40af;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.result-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.result-student-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.url-info {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f0f9ff;
+    border-radius: 0.75rem;
+    border: 1px solid #bae6fd;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #0369a1;
+}
+
+.url-info p {
+    margin: 0.5rem 0;
+}
+
+.url-link {
+    margin-top: 0.5rem;
+}
+
+.url-link code {
+    background: #e0f2fe;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    color: #0c4a6e;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .admin-seat-lookup-title {
+        font-size: 1.5rem;
+    }
+
+    .admin-seat-lookup-subtitle {
+        font-size: 1rem;
+    }
+
+    .admin-seat-lookup-content {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-seat-lookup-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .admin-seat-lookup-title {
+        font-size: 1.25rem;
+    }
+
+    .admin-seat-lookup-content {
+        padding: 1rem;
+    }
+
+    .result-student-name {
+        font-size: 1.1rem;
+    }
+
+    .highlight-value {
+        font-size: 1.1rem;
+    }
+
+    .search-type-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .search-type-btn {
+        width: 100%;
+    }
+
+    .search-type-label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+}
+

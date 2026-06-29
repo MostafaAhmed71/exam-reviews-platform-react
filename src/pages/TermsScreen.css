@@ -1,0 +1,310 @@
+/* Terms Screen - Matching Image Design */
+
+.terms-screen {
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    padding: 2rem 1rem;
+    position: relative;
+    background: #193064;
+    background-image: 
+        linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Background */
+.terms-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: #193064;
+    background-image: 
+        linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Main Card */
+.terms-main-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 95%;
+    background: linear-gradient(180deg, rgba(25, 48, 100, 0.9) 0%, rgba(20, 40, 80, 0.95) 100%);
+    border: 1px solid rgba(200, 200, 200, 0.3);
+    border-radius: 2rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+/* Back Button */
+.terms-back-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 0.75rem;
+    color: #92400e;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.terms-back-button:hover {
+    background: #fde68a;
+    transform: translateX(-2px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+.terms-back-button:active {
+    transform: translateX(0) scale(0.98);
+}
+
+.terms-back-button .back-icon {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.terms-back-button .back-text {
+    font-family: var(--font-family);
+}
+
+/* Title */
+.terms-title-wrapper {
+    text-align: center;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.terms-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Content */
+.terms-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    line-height: 1.8;
+}
+
+.term-paragraph {
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.8;
+    margin: 0;
+    text-align: right;
+}
+
+.term-paragraph strong {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.term-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    counter-reset: list-counter;
+}
+
+.term-list-item {
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.8;
+    margin: 0.75rem 0;
+    padding-right: 2rem;
+    position: relative;
+    text-align: right;
+    counter-increment: list-counter;
+}
+
+.term-list-item::before {
+    content: counter(list-counter) '.';
+    position: absolute;
+    right: 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Actions */
+.terms-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.terms-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.terms-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #fbbf24;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+.terms-checkbox-text {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.6;
+    text-align: right;
+    font-weight: 500;
+}
+
+.terms-continue-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #d1d5db;
+    border: 1px solid #9ca3af;
+    border-radius: 2rem;
+    color: #1f2937;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-family);
+}
+
+.terms-continue-button:hover:not(:disabled) {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.terms-continue-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.terms-continue-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Director Name */
+.terms-director {
+    position: relative;
+    z-index: 2;
+    text-align: right;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 95%;
+    padding-right: 1rem;
+}
+
+.director-text {
+    font-size: 1rem;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .terms-screen {
+        padding: 1.5rem 1rem;
+    }
+
+    .terms-main-card {
+        padding: 2.5rem 2rem;
+        border-radius: 1.5rem;
+    }
+
+    .terms-back-button {
+        top: 1.25rem;
+        right: 1.25rem;
+        padding: 0.625rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .terms-title-wrapper {
+        padding-top: 0.5rem;
+    }
+
+    .terms-title {
+        font-size: 2rem;
+    }
+
+    .term-paragraph {
+        font-size: 1rem;
+    }
+
+    .term-list-item {
+        font-size: 1rem;
+    }
+
+    .terms-checkbox {
+        width: 22px;
+        height: 22px;
+    }
+
+    .terms-checkbox-text {
+        font-size: 0.95rem;
+    }
+
+    .terms-continue-button {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-main-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .terms-title-wrapper {
+        padding-top: 0.5rem;
+    }
+
+    .terms-title {
+        font-size: 1.75rem;
+    }
+
+    .term-paragraph {
+        font-size: 0.95rem;
+    }
+
+    .term-list-item {
+        font-size: 0.95rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .terms-screen {
+        min-height: -webkit-fill-available;
+    }
+}

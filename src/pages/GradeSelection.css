@@ -1,0 +1,193 @@
+/* Grade Selection - Matching Image Design */
+
+.grade-selection {
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    background: #193064;
+    background-image: 
+        linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Main Card */
+.grade-main-card {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(180deg, rgba(25, 48, 100, 0.9) 0%, rgba(20, 40, 80, 0.95) 100%);
+    border: 1px solid rgba(200, 200, 200, 0.3);
+    border-radius: 2rem;
+    padding: 3rem 2.5rem;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Back Button */
+.grade-back-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 0.75rem;
+    color: #92400e;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.grade-back-button:hover {
+    background: #fde68a;
+    transform: translateX(-2px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+.grade-back-button:active {
+    transform: translateX(0) scale(0.98);
+}
+
+.grade-back-button .back-icon {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.grade-back-button .back-text {
+    font-family: var(--font-family);
+}
+
+/* Title */
+.grade-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 2.5rem 0;
+    padding-top: 1rem;
+}
+
+/* Stage Section */
+.stage-section {
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 1rem;
+    padding: 1.25rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Grade Buttons Row */
+.grade-buttons-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.grade-button {
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grade-button:hover {
+    background: rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.grade-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .grade-selection {
+        padding: 1.5rem 1rem;
+    }
+
+    .grade-main-card {
+        padding: 2.5rem 2rem;
+        border-radius: 1.5rem;
+    }
+
+    .grade-back-button {
+        top: 1.25rem;
+        right: 1.25rem;
+        padding: 0.625rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .grade-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        padding-top: 0.5rem;
+    }
+
+    .stage-section {
+        font-size: 1.2rem;
+        padding: 1rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .grade-buttons-row {
+        gap: 0.75rem;
+    }
+
+    .grade-button {
+        padding: 1.25rem 0.75rem;
+        font-size: 1.1rem;
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 360px) {
+    .grade-main-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .grade-title {
+        font-size: 1.75rem;
+    }
+
+    .stage-section {
+        font-size: 1.1rem;
+    }
+
+    .grade-button {
+        font-size: 1rem;
+        padding: 1rem 0.5rem;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .grade-selection {
+        min-height: -webkit-fill-available;
+    }
+}
