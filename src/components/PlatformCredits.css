@@ -1,0 +1,19 @@
+.platform-credits {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    padding: 20px 24px max(20px, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    border-top: 1px solid rgba(173, 194, 221, .16);
+}
+.credit-card { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 6px 12px; min-width: 0; text-align: center; }
+.credit-icon { display: none; }
+.credit-icon svg { width: 27px; height: 27px; }
+.credit-details { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; min-width: 0; width: 100%; text-align: center; }
+.credit-role { color: #b3c0d3; font-size: 16px; line-height: 1.8; }
+.credit-name { color: #e7be70; font-size: 23px; font-weight: 700; line-height: 1.8; overflow-wrap: anywhere; }
+@media (max-width: 480px) {
+    .platform-credits { padding: 16px 16px max(16px, env(safe-area-inset-bottom)); gap: 8px; }
+    .credit-name { font-size: 22px; }
+}

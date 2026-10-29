@@ -29,7 +29,7 @@ export function StageSelection() {
 
                 {/* Main Glass Card */}
                 <div className="stage-main-card">
-                    {/* Back Button */}
+                    <header className="stage-header">
                     <button 
                         className="stage-back-button"
                         onClick={navigateBack}
@@ -41,16 +41,18 @@ export function StageSelection() {
 
                     {/* Title */}
                     <h1 className="stage-title">اختر المرحلة</h1>
-                    <div className="title-underline"></div>
+                    </header>
 
                     {/* Stage Cards */}
                     <div className="stage-cards-container">
-                        {stages.map((stage) => (
-                            <div
+                        {stages.map((stage, index) => (
+                            <button
+                                type="button"
                                 key={stage.id}
                                 className="stage-card"
                                 onClick={() => handleStageSelect(stage.id as 'middle' | 'high')}
                             >
+                                <span className="stage-index" aria-hidden="true">0{index + 1}</span>
                                 <div className="stage-card-content">
                                     <div className="stage-icon-wrapper">
                                         <img 
@@ -60,16 +62,12 @@ export function StageSelection() {
                                         />
                                     </div>
                                     <h2 className="stage-name">{stage.name}</h2>
+                                    <span className="stage-enter">استكشف مراجعاتك <span aria-hidden="true">↗</span></span>
                                 </div>
-                            </div>
+                            </button>
                         ))}
                     </div>
 
-                    {/* Director Name */}
-                    <div className="director-info">
-                        <p className="director-label">مدير المدرسة</p>
-                        <p className="director-name">محمد نصر الدين</p>
-                    </div>
                 </div>
             </div>
         </Layout>

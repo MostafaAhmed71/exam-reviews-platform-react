@@ -3,9 +3,9 @@ import { useStore } from '@nanostores/react';
 import { Layout } from '@/components/Layout';
 import { Card } from '@/components/Card';
 import { Button } from '@/components/Button';
-import { BackButton } from '@/components/BackButton';
+import { SelectionHeader } from '@/components/SelectionHeader';
 import { selectedGrade, selectedSubjectName, selectedReviewType } from '@/lib/navigation';
-import { getMaterialsByGradeAndType } from '@/services/reviewService';
+import { subscribePublishedReviewsRefresh, getMaterialsByGradeAndType } from '@/services/reviewService';
 import { getGradeName } from '@/utils/gradeUtils';
 import { sortUploadedMaterials } from '@/utils/materialOrder';
 import type { UploadedMaterial } from '@/types/database.types';
@@ -32,6 +32,7 @@ export function SubjectMaterialsScreen() {
             }
         }
         loadMaterials();
+        const stopPublishedRefresh = subscribePublishedReviewsRefresh(loadMaterials);
 
         // Subscribe to real-time updates
         let channel: any = null;
@@ -59,7 +60,7 @@ export function SubjectMaterialsScreen() {
                                     
                                     if (newMaterial.stage === currentStage && 
                                         newMaterial.grade === grade && 
-                                        newMaterial.content_type === reviewType &&
+                                        (reviewType === 'all' ? ['solved', 'unsolved'].includes(newMaterial.content_type) : newMaterial.content_type === reviewType) &&
                                         newMaterial.subject_name === subjectName) {
                                         setMaterials((prev) =>
                                             sortUploadedMaterials(
@@ -109,6 +110,7 @@ export function SubjectMaterialsScreen() {
         }
 
         return () => {
+            stopPublishedRefresh();
             if (channel) {
                 (async () => {
                     const { supabase } = await import('@/lib/supabase');
@@ -168,10 +170,9 @@ export function SubjectMaterialsScreen() {
         return (
             <Layout showFooter>
                 <div className="materials-screen">
-                    <BackButton />
+                    <SelectionHeader>جاري التحميل...</SelectionHeader>
                     <div className="loading-container">
                         <div className="loading-spinner"></div>
-                        <h1 className="materials-title heading-shadow">جاري التحميل...</h1>
                     </div>
                 </div>
             </Layout>
@@ -182,13 +183,9 @@ export function SubjectMaterialsScreen() {
         return (
             <Layout showFooter>
                 <div className="materials-screen">
-                    <BackButton />
-                    <h1 className="materials-title heading-shadow">
-                        {reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'} - {subjectName}
-                    </h1>
-                    <p className="materials-subtitle">
-                        {grade ? getGradeName(grade) : ''}
-                    </p>
+                    <SelectionHeader>
+                        {reviewType === 'all' ? 'عرض الكل' : reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'} - {subjectName}
+                    </SelectionHeader>
                     <div className="empty-state">
                         <p className="empty-text">لا توجد مواد متاحة لهذه المادة حالياً</p>
                         <p className="empty-hint">يرجى التواصل مع المدرسة أو المحاولة لاحقاً</p>
@@ -203,13 +200,9 @@ export function SubjectMaterialsScreen() {
     return (
         <Layout showFooter>
             <div className="materials-screen">
-                <BackButton />
-                <h1 className="materials-title">
-                    {reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'} - {subjectName}
-                </h1>
-                <p className="materials-subtitle">
-                    {grade ? getGradeName(grade) : ''}
-                </p>
+                <SelectionHeader>
+                    {reviewType === 'all' ? 'عرض الكل' : reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'} - {subjectName}
+                </SelectionHeader>
 
                 {teacherWhatsApp && (
                     <div className="whatsapp-link-container">
@@ -224,9 +217,8 @@ export function SubjectMaterialsScreen() {
 
                 <div className="materials-grid">
                     {materials.map((material) => (
-                        <Card key={material.id} className="material-card">
+                        <Card key={material.source_id ?? material.id} className="material-card">
                             <div className="material-card-content">
-                                <h3 className="material-title">{material.file_name}</h3>
                                 {material.uploaded_at && (
                                     <p className="material-date">
                                         {new Date(material.uploaded_at).toLocaleDateString('ar-SA')}

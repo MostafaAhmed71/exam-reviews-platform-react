@@ -25,6 +25,8 @@ export interface SubjectWithGrades {
 export type ContentType = 'schedule' | 'solved' | 'unsolved' | 'videos' | 'electronic';
 
 export interface UploadedMaterial {
+    /** Stable identity for files read from the Olympiad platform. */
+    source_id?: string;
     id?: number;
     stage: 'middle' | 'high';
     grade: number;

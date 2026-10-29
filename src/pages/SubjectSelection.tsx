@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { Layout } from '@/components/Layout';
-import { BackButton } from '@/components/BackButton';
+import { SelectionHeader } from '@/components/SelectionHeader';
 import { selectedGrade, selectedReviewType } from '@/lib/navigation';
-import { getMaterialsByGradeAndType } from '@/services/reviewService';
+import { subscribePublishedReviewsRefresh, getMaterialsByGradeAndType } from '@/services/reviewService';
 import { getGradeName } from '@/utils/gradeUtils';
 import { getSubjectIconPath } from '@/utils/subjectIcons';
 import { orderGroupedMaterials } from '@/utils/materialOrder';
@@ -21,6 +21,12 @@ export function SubjectSelection() {
     const reviewType = useStore(selectedReviewType);
     const [groupedMaterials, setGroupedMaterials] = useState<GroupedMaterials[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
+    const normalizedSearch = searchQuery.trim().toLocaleLowerCase('ar');
+    const visibleGroups = groupedMaterials.filter(group =>
+        group.subject_name.toLocaleLowerCase('ar').includes(normalizedSearch) ||
+        group.materials.some(material => material.file_name.toLocaleLowerCase('ar').includes(normalizedSearch))
+    );
 
     useEffect(() => {
         async function loadMaterials() {
@@ -49,6 +55,7 @@ export function SubjectSelection() {
         }
 
         loadMaterials();
+        const stopPublishedRefresh = subscribePublishedReviewsRefresh(loadMaterials);
 
         // Subscribe to real-time updates
         let channel: any = null;
@@ -81,7 +88,7 @@ export function SubjectSelection() {
                                     const materialStage: 'middle' | 'high' = newMaterial.grade >= 7 && newMaterial.grade <= 9 ? 'middle' : 'high';
                                     const matchesStage = newMaterial.stage === stage;
                                     const matchesGrade = newMaterial.grade === grade;
-                                    const matchesType = newMaterial.content_type === reviewType;
+                                    const matchesType = (reviewType === 'all' ? ['solved', 'unsolved'].includes(newMaterial.content_type) : newMaterial.content_type === reviewType);
                                     
                                     console.log('🔍 Filter check:', {
                                         materialStage,
@@ -132,7 +139,7 @@ export function SubjectSelection() {
                                     const materialStage: 'middle' | 'high' = deletedMaterial.grade >= 7 && deletedMaterial.grade <= 9 ? 'middle' : 'high';
                                     const matchesStage = deletedMaterial.stage === stage;
                                     const matchesGrade = deletedMaterial.grade === grade;
-                                    const matchesType = deletedMaterial.content_type === reviewType;
+                                    const matchesType = (reviewType === 'all' ? ['solved', 'unsolved'].includes(deletedMaterial.content_type) : deletedMaterial.content_type === reviewType);
                                     
                                     console.log('🗑️ Delete event detected:', deletedMaterial);
                                     console.log('🔍 Delete filter check:', {
@@ -167,7 +174,7 @@ export function SubjectSelection() {
                                     const updatedMaterial = payload.new as UploadedMaterial;
                                     const matchesStage = updatedMaterial.stage === stage;
                                     const matchesGrade = updatedMaterial.grade === grade;
-                                    const matchesType = updatedMaterial.content_type === reviewType;
+                                    const matchesType = (reviewType === 'all' ? ['solved', 'unsolved'].includes(updatedMaterial.content_type) : updatedMaterial.content_type === reviewType);
                                     
                                     if (matchesStage && matchesGrade && matchesType) {
                                         console.log('🔄 Updating material:', updatedMaterial);
@@ -233,6 +240,7 @@ export function SubjectSelection() {
 
         // Cleanup subscription on unmount
         return () => {
+            stopPublishedRefresh();
             if (channel) {
                 (async () => {
                     const { supabase } = await import('@/lib/supabase');
@@ -300,10 +308,9 @@ export function SubjectSelection() {
         return (
             <Layout showFooter>
                 <div className="subject-selection">
-                    <BackButton />
+                    <SelectionHeader>جاري التحميل...</SelectionHeader>
                     <div className="loading-container">
                         <div className="loading-spinner"></div>
-                        <h1 className="subject-title heading-shadow">جاري التحميل...</h1>
                     </div>
                 </div>
             </Layout>
@@ -314,13 +321,9 @@ export function SubjectSelection() {
         return (
             <Layout showFooter>
                 <div className="subject-selection">
-                    <BackButton />
-                    <h1 className="subject-title heading-shadow">
-                        {reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'}
-                    </h1>
-                    <p className="subject-subtitle">
-                        {grade ? getGradeName(grade) : ''} - اختر مادة للبدء
-                    </p>
+                    <SelectionHeader>
+                        {reviewType === 'all' ? 'عرض الكل' : reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'}
+                    </SelectionHeader>
                     <div className="empty-state">
                         <p className="empty-text">لا توجد مواد متاحة لهذا الصف</p>
                         <p className="empty-hint">يرجى التواصل مع المدرسة أو المحاولة لاحقاً</p>
@@ -333,25 +336,31 @@ export function SubjectSelection() {
     return (
         <Layout showFooter>
             <div className="subject-selection">
-                <BackButton />
-                <h1 className="subject-title">
-                    {reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'}
-                </h1>
-                <p className="subject-subtitle">
-                    {grade ? getGradeName(grade) : ''} - اختر مادة للبدء
-                </p>
+                <SelectionHeader>
+                    {reviewType === 'all' ? 'عرض الكل' : reviewType === 'solved' ? 'مراجعات محلولة' : 'مراجعات غير محلولة'}
+                </SelectionHeader>
+                <div className="portal-search">
+                    <label htmlFor="review-search">ابحث عن مراجعتك</label>
+                    <div className="portal-search-field">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6" /><path d="m15 15 5 5" /></svg>
+                        <input id="review-search" type="search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder="اسم المادة أو الملف…" />
+                    </div>
+                    <span className="portal-results" role="status">{visibleGroups.length} من {groupedMaterials.length} مواد</span>
+                </div>
+                {visibleGroups.length === 0 && <div className="empty-state"><p>لا توجد مراجعات مطابقة للبحث</p><button className="portal-clear-search" onClick={() => setSearchQuery('')}>مسح البحث</button></div>}
 
                 <div className="subject-options">
-                    {groupedMaterials.map((group) => {
+                    {visibleGroups.map((group) => {
                         const subjectIcon = getSubjectIconPath(group.subject_name);
                         return (
                             <div
                                 key={group.subject_name}
                                 className="subject-card-horizontal"
                             >
+                                <div className="library-subject-heading"><h2>{group.subject_name}</h2><span>{group.materials.length} ملفات</span></div>
                                 {group.materials.map((material) => (
-                                    <div key={material.id} className="subject-card-content-horizontal">
-                                        {subjectIcon && (
+                                    <div key={material.source_id ?? material.id} className="subject-card-content-horizontal">
+                                        {subjectIcon ? (
                                             <div className="subject-icon-wrapper">
                                                 <img 
                                                     src={subjectIcon} 
@@ -359,10 +368,7 @@ export function SubjectSelection() {
                                                     className="subject-icon-img"
                                                 />
                                             </div>
-                                        )}
-                                        <div className="subject-info-horizontal">
-                                            <h3 className="subject-name-horizontal">{group.subject_name}</h3>
-                                        </div>
+                                        ) : <div className="subject-icon-wrapper" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M16 8c-4-3-8-3-12-2v20c4-1 8-1 12 2 4-3 8-3 12-2V6c-4-1-8-1-12 2Zm0 0v20" /></svg></div>}
                                         <div className="material-item-actions">
                                             <button
                                                 className="material-action-btn download-btn"

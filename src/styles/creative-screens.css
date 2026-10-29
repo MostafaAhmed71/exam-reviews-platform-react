@@ -1,0 +1,176 @@
+/* Editorial composition and code-native learning artwork; existing palette retained. */
+.student-ui .welcome-screen { max-width: 1320px; margin: auto; }
+.student-ui .glass-container { max-width: 1180px; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; padding: 60px 48px; background: transparent; border: 0; box-shadow: none; overflow: visible; }
+.student-ui .glass-container::before { display: none; }
+.student-ui .welcome-content { grid-column: 1; grid-row: 1; align-items: flex-start; text-align: right; position: relative; z-index: 2; }
+.student-ui .welcome-logo { width: 64px; height: 64px; margin-bottom: 28px; }
+.student-ui .welcome-logo .logo-image { border-radius: 18px; }
+.student-ui .welcome-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0; }
+.student-ui .welcome-eyebrow::before { content: ''; height: 1px; width: 32px; background: var(--portal-gold); }
+.student-ui .welcome-title { text-align: right; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.7; margin-bottom: 12px; }
+.hero-description { color: var(--portal-muted); font-size: 15px; line-height: 2; max-width: 400px; margin-bottom: 24px; }
+.student-ui .welcome-subtitle { font-size: 11px; margin-bottom: 12px; }
+.student-ui .welcome-school-name { text-align: right; font-size: 13px; margin-bottom: 26px; }
+.student-ui .start-button { max-width: 280px; min-height: 56px; justify-content: space-between; padding: 12px 24px; border-radius: 4px 16px 16px 16px; }
+.student-ui .welcome-features { justify-content: flex-start; font-size: 10px; margin-top: 20px; }
+.student-ui .director-info { flex-direction: row; justify-content: flex-start; align-items: baseline; gap: 12px; margin-top: 34px; padding-top: 18px; }
+.student-ui .developer-card { align-items: flex-start; margin-top: 12px; }
+.learning-artwork { grid-column: 2; grid-row: 1; width: 100%; max-width: 510px; height: 510px; position: relative; isolation: isolate; }
+.art-scene { position: absolute; inset: 0; }
+.art-orbit { position: absolute; border: 1px solid #e7be7026; border-radius: 50%; inset: 32px; transform: rotate(-20deg); }
+.orbit-two { inset: 60px 10px; border-style: dashed; opacity: .55; transform: rotate(25deg); }
+.learning-artwork::before { content: ''; position: absolute; inset: 100px 70px; border-radius: 50%; background: #e7be7008; box-shadow: 0 0 100px #e7be7012; }
+.art-star { position: absolute; color: var(--portal-gold); }
+.star-one { top: 45px; left: 80px; font-size: 35px; }
+.star-two { right: 30px; bottom: 115px; font-size: 30px; }
+.art-sheet { position: absolute; top: 72px; left: 105px; width: 225px; height: 250px; border-radius: 12px; background: #f0e5cc; color: #2f3845; padding: 24px; transform: rotate(-10deg); box-shadow: 15px 24px 60px #0004; }
+.art-sheet-heading { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; }
+.art-sheet-rule { height: 1px; background: #b6a68b66; margin: 15px 0 20px; }
+.art-check-line { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.art-check-line span { height: 20px; width: 20px; border-radius: 50%; background: #688473; color: #fff; display: grid; place-items: center; font-size: 12px; }
+.art-check-line i { width: 120px; height: 6px; border-radius: 10px; background: #c8b99a; }
+.art-check-line:nth-of-type(4) i { width: 85px; }
+.art-check-line.pending span { background: transparent; border: 1px solid #b6a68b; }
+.art-progress { height: 5px; border-radius: 10px; background: #d9cdb6; margin-top: 22px; }
+.art-progress i { display: block; width: 66%; height: 100%; background: #ad8544; border-radius: inherit; }
+.art-book { position: absolute; bottom: 55px; left: 20px; width: 400px; max-width: 90%; transform: rotate(8deg); filter: drop-shadow(0 22px 20px #0003); }
+.art-label { position: absolute; padding: 12px 18px; display: flex; gap: 12px; align-items: center; background: #1d3048; border: 1px solid #ffffff1a; border-radius: 14px; box-shadow: 0 12px 30px #0002; font-size: 13px; font-weight: 700; }
+.art-label small { display: block; font-size: 10px; font-weight: 400; color: var(--portal-muted); margin-top: 3px; }
+.art-label-icon { display: grid; place-items: center; width: 30px; height: 30px; color: var(--portal-gold); background: #e7be7010; border-radius: 8px; font-size: 20px; }
+.label-solved { top: 124px; right: -5px; transform: rotate(5deg); }
+.label-practice { bottom: 60px; left: -8px; transform: rotate(-4deg); }
+.art-caption { position: absolute; bottom: 0; inset-inline: 0; text-align: center; color: var(--portal-muted); font-size: 11px; }
+.creative-intro { font-size: 13px; line-height: 1.9; color: var(--portal-muted); text-align: center; }
+.student-ui :is(.stage-main-card, .grade-main-card) { background: transparent; border: none; box-shadow: none; max-width: 1050px; padding-inline: 0; }
+.student-ui .stage-cards-container { gap: 24px; }
+.student-ui .stage-card { text-align: right; position: relative; overflow: hidden; min-height: 290px; padding: 32px; background: linear-gradient(140deg, #22374f, #15243b); border-radius: 24px 24px 6px 24px; }
+.student-ui .stage-card:nth-child(2) { border-radius: 24px 24px 24px 6px; background: linear-gradient(140deg, #293747, #15243b); }
+.student-ui .stage-card::after { content: ''; width: 240px; height: 240px; border: 1px solid #e7be701c; position: absolute; border-radius: 50%; top: -90px; left: -90px; pointer-events: none; }
+.student-ui .stage-card-content { display: block; position: relative; z-index: 1; }
+.student-ui .stage-icon-wrapper { margin: 0 0 26px; width: 76px; height: 76px; border-radius: 18px; background: #ffffff08; }
+.student-ui .stage-name { text-align: right; font-size: 22px; margin-bottom: 8px; }
+.stage-index { position: absolute; top: 18px; left: 28px; font-size: 88px; line-height: 1; font-family: Georgia, serif; color: #e7be701b; }
+.stage-card-note { font-size: 12px; color: var(--portal-muted); }
+.stage-enter { display: flex; justify-content: space-between; margin-top: 26px; border-top: 1px solid var(--portal-border); padding-top: 16px; color: var(--portal-gold); font-size: 12px; }
+.student-ui .stage-main-card .director-info { width: auto; border: 0; justify-content: center; }
+.student-ui .grade-buttons-row { display: flex; margin-top: 18px; }
+.student-ui .grade-button { position: relative; min-height: 240px; display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border-radius: 18px; gap: 10px; overflow: hidden; text-align: right; }
+.grade-index { font: 70px/1 Georgia, serif; color: #e7be7040; margin-bottom: 12px; }
+.grade-name { font-size: 21px; font-weight: 700; }
+.grade-action { display: flex; justify-content: space-between; width: 100%; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--portal-border); color: var(--portal-gold); font-size: 12px; }
+.student-ui .review-type-header { text-align: right; max-width: 1000px; }
+.student-ui .review-type-header .header-content, .student-ui .review-type-header .creative-intro, .student-ui .review-type-title { text-align: right; }
+.student-ui .review-type-header .title-with-logo { justify-content: flex-start; }
+.student-ui .review-type-header .school-name { display: none; }
+.student-ui .review-type-options { max-width: 1000px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.student-ui .review-type-card { min-height: 265px; padding: 26px; justify-content: flex-end; border-radius: 20px; }
+.option-category { position: absolute; top: 24px; right: 26px; color: var(--portal-muted); font-size: 11px; letter-spacing: .02em; }
+.option-watermark { position: absolute; top: 12px; left: 26px; font: 120px/1 Georgia, serif; color: #e7be700a; pointer-events: none; }
+.student-ui .review-type-card .option-arrow { top: auto; bottom: 26px; left: 22px; }
+.student-ui .review-type-card .card-content { padding-left: 18px; }
+.student-ui .review-type-card.option-all { grid-column: 1 / -1; min-height: 170px; flex-direction: row; align-items: center; justify-content: flex-start; padding: 34px 36px; background: linear-gradient(100deg, #2b3d51, #233449); border-color: #e7be704d; gap: 24px; }
+.student-ui .option-all .card-icon { width: 62px; height: 62px; min-width: 62px; padding: 16px; border-radius: 18px; }
+.student-ui .option-all .option-category { position: static; order: -1; align-self: flex-start; display: none; }
+.student-ui .option-all .card-title { font-size: 25px; }
+.student-ui .option-all .option-watermark { font-size: 210px; top: -50px; left: 80px; color: #e7be700c; }
+.student-ui .option-all .option-arrow { top: 50%; bottom: auto; transform: translateY(-50%); left: 36px; border: 1px solid #e7be7040; color: var(--portal-gold); width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; }
+.student-ui .review-type-back-section { max-width: 1000px; }
+.library-subject-heading { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--portal-border); background: #ffffff03; }
+.library-subject-heading h2 { font-size: 18px; font-weight: 700; }
+.library-subject-heading span { font-size: 10px; color: var(--portal-gold); border: 1px solid #e7be7030; padding: 4px 10px; border-radius: 100px; }
+.student-ui .subject-card-horizontal { border-radius: 18px 18px 6px 18px; overflow: hidden; }
+.student-ui .subject-name-horizontal { font-size: 14px; }
+.student-ui .subject-info-horizontal .portal-file-name { font-size: 11px; }
+.student-ui .subject-selection .material-item-actions { grid-column: 2; margin-top: 0; align-self: center; }
+.student-ui .portal-search { padding: 16px 20px; border: 1px solid var(--portal-border); border-radius: 16px; background: #ffffff03; }
+.student-ui .terms-main-card { border-top: 3px solid var(--portal-gold); }
+.student-ui .term-list-item::marker { color: var(--portal-gold); font-weight: 800; }
+@media (max-width: 900px) {
+    .student-ui .glass-container { padding: 30px 16px; gap: 10px; }
+    .student-ui .welcome-title { font-size: 32px; }
+    .learning-artwork { transform: scale(.85); transform-origin: center; }
+}
+@media (max-width: 640px) {
+    .student-ui.welcome-layout { min-height: 100dvh; }
+    .student-ui.welcome-layout .layout-main { flex: 1; min-height: 0; }
+    .student-ui .welcome-screen { flex: 1; min-height: 0; justify-content: center; max-width: 480px; margin: 0 auto; padding: 28px 22px; }
+    .student-ui .glass-container { display: grid; grid-template-columns: minmax(0, 1fr) 108px; align-items: center; padding: 0; gap: clamp(14px, 2.2dvh, 22px) 14px; margin: 0; }
+    .student-ui .welcome-content { display: contents; }
+    .student-ui .welcome-content > :not(.welcome-title) { grid-column: 1 / -1; }
+    .student-ui .welcome-content > .welcome-logo { grid-row: 2; grid-column: 1 / -1; justify-self: start; width: 52px; height: 52px; margin: 0; }
+    .student-ui .welcome-content > .welcome-eyebrow { grid-row: 1; grid-column: 1 / -1; justify-self: start; font-size: 13px; line-height: 1.8; margin: 0; text-align: right; }
+    .student-ui .welcome-eyebrow::before { display: none; }
+    .student-ui .welcome-title { grid-row: 3; grid-column: 1; font-size: clamp(23px, 6.2vw, 28px); line-height: 1.55; margin: 8px 0; }
+    .hero-description { font-size: 15px; line-height: 1.9; margin: 0; text-align: right; }
+    .student-ui .welcome-subtitle { font-size: 13px; line-height: 1.8; margin: 0; padding: 10px 12px; border-radius: 12px; background: #ffffff04; }
+    .student-ui .welcome-school-name { font-size: 14px; line-height: 1.8; margin: 0; text-align: center; }
+    .student-ui .welcome-features { margin: 0; gap: 8px 14px; font-size: 12px; line-height: 1.8; justify-content: center; }
+    .student-ui .start-button.button.primary { max-width: none; width: 100%; min-height: 58px; font-size: 17px; border-radius: 14px; margin: 4px 0 0; }
+    .student-ui.welcome-layout .platform-credits { padding: 18px 20px max(22px, env(safe-area-inset-bottom)); background: #ffffff02; }
+    .learning-artwork { grid-row: 3; grid-column: 2; width: 108px; max-width: 100%; height: 108px; transform: none; margin: 0; }
+    .learning-artwork::before { display: none; }
+    .art-scene { inset: auto; top: 0; left: 50%; width: 320px; height: 270px; transform: translateX(-50%) scale(.3375); transform-origin: center top; }
+    .art-sheet { top: 8px; left: 50%; width: 145px; height: 170px; padding: 16px; transform: translateX(-50%) rotate(-5deg); }
+    .art-sheet-heading { font-size: 9px; }
+    .art-sheet-rule { margin: 10px 0 12px; }
+    .art-check-line { gap: 8px; margin-bottom: 10px; }
+    .art-check-line span { width: 15px; height: 15px; font-size: 9px; }
+    .art-check-line i { width: 82px; height: 4px; }
+    .art-progress { margin-top: 15px; height: 4px; }
+    .art-book { width: 260px; max-width: 88%; bottom: 18px; left: 50%; transform: translateX(-50%); }
+    .art-label { padding: 8px 10px; font-size: 11px; gap: 8px; border-radius: 10px; transform: none; }
+    .art-label small { display: none; }
+    .art-label-icon { width: 23px; height: 23px; font-size: 15px; }
+    .label-solved { top: 34px; right: 0; }
+    .label-practice { bottom: 14px; left: 0; }
+    .star-one { top: 14px; left: 20px; font-size: 20px; }
+    .star-two { right: 8px; bottom: 64px; font-size: 20px; }
+    .art-caption { display: none; }
+    .learning-artwork .orbit-one { inset: 18px 20px; }
+    .learning-artwork .orbit-two { display: none; }
+    .student-ui :is(.stage-main-card, .grade-main-card) { padding: 70px 0 20px; }
+    .student-ui .stage-cards-container { grid-template-columns: 1fr; gap: 16px; }
+    .student-ui .stage-card { min-height: 245px; padding: 24px; }
+    .student-ui .stage-name { font-size: 20px; }
+    .student-ui .stage-icon-wrapper { width: 60px; height: 60px; margin-bottom: 18px; }
+    .stage-index { font-size: 80px; }
+    .student-ui .grade-buttons-row { flex-direction: column; width: 100%; gap: 12px; }
+    .student-ui .grade-button { width: 100%; min-height: 126px; display: grid; grid-template-columns: 60px 1fr; align-items: center; padding: 22px; gap: 8px 16px; }
+    .grade-index { grid-column: 1; grid-row: 1 / 3; font-size: 52px; margin: 0; }
+    .grade-name { font-size: 19px; }
+    .grade-action { padding-top: 12px; font-size: 10px; }
+    .student-ui .review-type-options { grid-template-columns: 1fr; gap: 16px; }
+    .student-ui .review-type-card { min-height: 175px; padding: 48px 22px 22px; flex-direction: row; align-items: center; justify-content: flex-start; }
+    .student-ui .review-type-card.option-all { min-height: 158px; padding: 26px 22px; gap: 16px; }
+    .student-ui .option-all .card-title { font-size: 21px; }
+    .student-ui .option-all .card-icon { min-width: 48px; width: 48px; height: 48px; padding: 12px; }
+    .student-ui .option-all .option-arrow { display: none; }
+    .student-ui .option-all .card-content { padding: 0; }
+    .option-category { right: 22px; top: 18px; }
+    .option-watermark { font-size: 100px; top: 0; left: 18px; }
+    .student-ui .review-type-card .card-title { font-size: 19px; }
+    .student-ui .review-type-card .option-arrow { top: auto; bottom: 20px; transform: none; }
+    .student-ui .portal-search { padding: 14px; }
+    .library-subject-heading { padding: 18px; }
+}
+@media (max-width: 360px) {
+    .student-ui .welcome-screen { padding-inline: 18px; }
+    .student-ui .glass-container { grid-template-columns: minmax(0, 1fr) 88px; column-gap: 10px; }
+    .learning-artwork { width: 88px; height: 90px; }
+    .art-scene { transform: translateX(-50%) scale(.275); }
+}
+
+/* Keep selection cards close to their headings after removing descriptions. */
+.student-ui .stage-main-card { padding-top: 62px; gap: 16px; justify-content: flex-start; }
+.student-ui .stage-back-button { top: 0; right: 0; }
+.student-ui .stage-title { padding-top: 0; margin: 0; }
+.student-ui .stage-cards-container { margin: 0; flex: none; }
+.student-ui .review-type-header { margin: 0 auto 16px; }
+.student-ui .review-type-header .title-with-logo { margin-bottom: 0; }
+.student-ui .review-type-card { min-height: 200px; justify-content: center; }
+.student-ui .review-type-card.option-all { min-height: 130px; }
+@media (max-width: 640px) {
+    .student-ui .stage-main-card { padding-top: 58px; }
+    .student-ui .review-type-card { min-height: 124px; padding: 22px; }
+    .student-ui .review-type-card.option-all { min-height: 124px; }
+}

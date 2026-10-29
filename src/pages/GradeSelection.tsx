@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { Layout } from '@/components/Layout';
-import { setGrade, selectedStage, navigateBack } from '@/lib/navigation';
+import { setGrade, selectedStage } from '@/lib/navigation';
+import { SelectionHeader } from '@/components/SelectionHeader';
 import './GradeSelection.css';
 
 export function GradeSelection() {
@@ -36,18 +37,7 @@ export function GradeSelection() {
         <Layout showFooter={false}>
             <div className="grade-selection">
                 <div className="grade-main-card">
-                    {/* Back Button */}
-                    <button 
-                        className="grade-back-button"
-                        onClick={navigateBack}
-                        aria-label="رجوع"
-                    >
-                        <span className="back-icon">←</span>
-                        <span className="back-text">رجوع</span>
-                    </button>
-
-                    {/* Title */}
-                    <h1 className="grade-title">اختر الصف</h1>
+                    <SelectionHeader>اختر الصف</SelectionHeader>
 
                     {/* Stage Section */}
                     <div className="stage-section">
@@ -56,13 +46,15 @@ export function GradeSelection() {
 
                     {/* Grade Buttons */}
                     <div className="grade-buttons-row">
-                        {grades.map((grade) => (
+                        {grades.map((grade, index) => (
                             <button
                                 key={grade.id}
                                 className="grade-button"
                                 onClick={() => handleGradeSelect(grade.id)}
                             >
-                                {grade.name}
+                                <span className="grade-index" aria-hidden="true">0{index + 1}</span>
+                                <span className="grade-name">{grade.name}</span>
+                                <span className="grade-action">إلى مراجعاتك <span aria-hidden="true">←</span></span>
                             </button>
                         ))}
                     </div>

@@ -1,0 +1,40 @@
+.student-ui .selection-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto) minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    direction: rtl;
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto 16px;
+    position: relative;
+    z-index: 2;
+}
+.student-ui .selection-header .back-button {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    margin: 0;
+    min-height: 44px;
+}
+.student-ui .selection-header .selection-header-title {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    text-align: center;
+    font-size: clamp(25px, 3vw, 34px);
+    font-weight: 800;
+    line-height: 1.6;
+    color: #f4f6fb;
+    overflow-wrap: anywhere;
+}
+.student-ui .grade-main-card:has(> .selection-header) { padding-top: 0; gap: 12px; }
+.student-ui .grade-main-card > .selection-header { margin-bottom: 0; }
+@media (max-width: 640px) {
+    .student-ui .selection-header { grid-template-columns: 68px minmax(0, 1fr) 68px; gap: 4px; }
+    .student-ui .selection-header .selection-header-title { font-size: clamp(17px, 4.5vw, 23px); }
+    .student-ui .selection-header .back-button { padding-inline: 8px; }
+}

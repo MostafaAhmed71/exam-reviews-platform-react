@@ -239,7 +239,7 @@ export function StudentManagement() {
     return (
         <Layout showFooter={false}>
             <div className="student-management">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <div className="student-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <h1>إدارة الطلاب وأرقام الجلوس</h1>
                     <Button variant="secondary" onClick={() => navigateTo('admin')}>
                         العودة للوحة التحكم
@@ -259,7 +259,7 @@ export function StudentManagement() {
                 )}
 
                 <div className="student-form-card">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <div className="student-section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                         <h2>إضافة طالب جديد</h2>
                         <div className="upload-section">
                             <input
@@ -387,7 +387,7 @@ export function StudentManagement() {
                 </div>
 
                 <div className="student-list-card">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <div className="student-section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                         <h2>قائمة الطلاب ({students.length})</h2>
                         {students.length > 0 && (
                             <button
@@ -402,7 +402,7 @@ export function StudentManagement() {
                     {loading ? (
                         <p>جاري التحميل...</p>
                     ) : (
-                        <div style={{ overflowX: 'auto' }}>
+                        <div className="student-table-scroll" role="region" aria-label="جدول الطلاب — يمكن تمريره أفقيًا" tabIndex={0} style={{ overflowX: 'auto' }}>
                             <table className="students-table">
                                 <thead>
                                     <tr>

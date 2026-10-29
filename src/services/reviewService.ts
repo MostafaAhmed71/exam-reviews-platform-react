@@ -1,81 +1,103 @@
 import { supabase } from '@/lib/supabase';
 import type { UploadedMaterial } from '@/types/database.types';
 
-/**
- * Get uploaded materials by stage, grade and review type
- */
+type ReviewContentType = 'solved' | 'unsolved' | 'schedule';
+
+interface PublishedReview {
+    id: string;
+    subject: string;
+    file_name: string;
+    file_url: string;
+    uploaded_at: string;
+}
+
+/** Read published Olympiad files alongside any existing platform uploads. */
+async function getPublishedMaterials(
+    grade: number,
+    contentType: ReviewContentType
+): Promise<UploadedMaterial[]> {
+    if (!supabase || !Number.isInteger(grade) || grade < 7 || grade > 12) return [];
+    const stage = grade <= 9 ? 'middle' : 'high';
+    const academicGrade = grade - (stage === 'middle' ? 6 : 9);
+    const types = { solved: 'solvedReview', unsolved: 'unsolvedReview', schedule: 'testSchedule' };
+    const [legacy, published] = await Promise.all([
+        supabase.from('uploaded_materials').select('*')
+            .eq('stage', stage).eq('grade', grade).eq('content_type', contentType)
+            .order('uploaded_at', { ascending: false }),
+        supabase.from('academic_exam_reviews')
+            .select('id,subject,file_name,file_url,uploaded_at')
+            .eq('status', 'sentToParent').eq('education_level', stage)
+            .eq('grade', academicGrade).eq('type', types[contentType])
+            .order('uploaded_at', { ascending: false }),
+    ]);
+    // The legacy table is optional when using the Olympiad database.
+    if (legacy.error && !['PGRST205', '42P01'].includes(legacy.error.code)) {
+        console.error('Error fetching platform materials:', legacy.error);
+    }
+    if (published.error) console.error('Error fetching published Olympiad reviews:', published.error);
+    const materials: UploadedMaterial[] = legacy.error ? [] : (legacy.data || []);
+    const seen = new Set(materials.map(material => material.file_url));
+    for (const review of (published.data || []) as PublishedReview[]) {
+        if (seen.has(review.file_url)) continue;
+        seen.add(review.file_url);
+        materials.push({
+            source_id: `olympiad:${review.id}`,
+            stage, grade, subject_name: review.subject.trim(), content_type: contentType,
+            file_name: review.file_name, file_url: review.file_url, file_size: 0,
+            uploaded_at: review.uploaded_at,
+        });
+    }
+    return materials.sort((a, b) =>
+        Date.parse(b.uploaded_at || '') - Date.parse(a.uploaded_at || ''));
+}
+
 export async function getMaterialsByGradeAndType(
     grade: number,
-    reviewType: 'solved' | 'unsolved'
+    reviewType: 'solved' | 'unsolved' | 'all'
 ): Promise<UploadedMaterial[]> {
     try {
-        // Return empty array if Supabase is not configured
-        if (!supabase) {
-            console.warn('Supabase not configured. Using mock data.');
-            return [];
+        if (reviewType === 'all') {
+            const groups = await Promise.all([
+                getPublishedMaterials(grade, 'solved'),
+                getPublishedMaterials(grade, 'unsolved'),
+            ]);
+            const seen = new Set<string>();
+            return groups.flat().filter(material => {
+                if (seen.has(material.file_url)) return false;
+                seen.add(material.file_url);
+                return true;
+            });
         }
-
-        // Determine stage from grade
-        const stage: 'middle' | 'high' = grade >= 7 && grade <= 9 ? 'middle' : 'high';
-
-        const { data, error } = await supabase
-            .from('uploaded_materials')
-            .select('*')
-            .eq('stage', stage)
-            .eq('grade', grade)
-            .eq('content_type', reviewType)
-            .order('uploaded_at', { ascending: false });
-
-        if (error) {
-            console.error('Error fetching materials:', error);
-            return [];
-        }
-
-        return data || [];
+        return await getPublishedMaterials(grade, reviewType);
     } catch (error) {
         console.error('Error fetching materials:', error);
         return [];
     }
 }
 
-/**
- * Get schedule by grade
- */
 export async function getScheduleByGrade(grade: number): Promise<{ file_url: string; file_name: string } | null> {
     try {
-        if (!supabase) {
-            return null;
-        }
-
-        const stage: 'middle' | 'high' = grade >= 7 && grade <= 9 ? 'middle' : 'high';
-
-        const { data, error } = await supabase
-            .from('uploaded_materials')
-            .select('file_url, file_name')
-            .eq('stage', stage)
-            .eq('grade', grade)
-            .eq('content_type', 'schedule')
-            .order('uploaded_at', { ascending: false })
-            .limit(1)
-            .maybeSingle();
-
-        if (error) {
-            // Only log if it's not a "not found" error
-            if (error.code !== 'PGRST116') {
-                console.error('Error fetching schedule:', error);
-            }
-            return null;
-        }
-
-        if (!data) {
-            return null;
-        }
-
-        return { file_url: data.file_url, file_name: data.file_name };
+        const materials = await getPublishedMaterials(grade, 'schedule');
+        const latest = materials[0];
+        return latest ? { file_url: latest.file_url, file_name: latest.file_name } : null;
     } catch (error) {
         console.error('Error fetching schedule:', error);
         return null;
     }
+}
+
+/** Refresh even when the source table is not enabled for Supabase Realtime. */
+export function subscribePublishedReviewsRefresh(refresh: () => void): () => void {
+    const timer = window.setInterval(refresh, 30_000);
+    window.addEventListener('focus', refresh);
+    const channel = supabase?.channel(`olympiad-reviews-${crypto.randomUUID()}`)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'academic_exam_reviews' }, refresh)
+        .subscribe();
+    return () => {
+        window.clearInterval(timer);
+        window.removeEventListener('focus', refresh);
+        if (channel && supabase) void supabase.removeChannel(channel);
+    };
 }
 
 /**

@@ -1,11 +1,20 @@
 import { Layout } from '@/components/Layout';
+import { SelectionHeader } from '@/components/SelectionHeader';
 import { useStore } from '@nanostores/react';
-import { selectedStage, selectedGrade, setContentType, navigateBack, navigateTo, type ContentType } from '@/lib/navigation';
+import { selectedStage, selectedGrade, setContentType, navigateTo, type ContentType } from '@/lib/navigation';
 import './ReviewTypeSelection.css';
 import './SeatLookupModal.css';
 import { useState } from 'react';
 import { searchStudent } from '@/services/studentService';
 import type { Student } from '@/types/database.types';
+
+function ReviewOptionIcon({ type }: { type: string }) {
+    return (
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {type === 'all' ? <><rect x="4" y="4" width="9" height="9" rx="2" /><rect x="19" y="4" width="9" height="9" rx="2" /><rect x="4" y="19" width="9" height="9" rx="2" /><rect x="19" y="19" width="9" height="9" rx="2" /></> : type === 'schedule' ? <><rect x="4" y="6" width="24" height="22" rx="4" /><path d="M10 3v6m12-6v6M4 13h24M10 19h3m6 0h3m-12 5h3" /></> : <><path d="M8 3h11l6 6v18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" /><path d="M18 3v7h7M11 15h9M11 19h5" />{type === 'solved' ? <path d="m15 24 3 3 6-7" /> : <path d="M19 22a2 2 0 1 1 3 2c-1 .5-1 1-1 2m0 2h.01" />}</>}
+        </svg>
+    );
+}
 
 export function ReviewTypeSelection() {
     const stage = useStore(selectedStage);
@@ -61,6 +70,14 @@ export function ReviewTypeSelection() {
         iconImage?: string;
         availableFor?: 'middle' | 'high' | 'all';
     }> = [
+        {
+            id: 'all',
+            number: 0,
+            name: 'عرض الكل',
+            description: 'جميع المراجعات المحلولة وغير المحلولة في مكان واحد.',
+            icon: '?',
+            availableFor: 'all'
+        },
             {
                 id: 'live-stream' as any,
                 number: 6,
@@ -178,69 +195,27 @@ export function ReviewTypeSelection() {
                 <div className="review-type-background"></div>
 
                 {/* Header */}
-                <div className="review-type-header">
-                    <div className="header-content">
-                        <div className="title-with-logo">
-                            <div className="header-logo">
-                                <img
-                                    src="/logo.jpeg"
-                                    alt="شعار المدرسة"
-                                    className="logo-image"
-                                />
-                            </div>
-                            <h1 className="review-type-title">اختر نوع المراجعة</h1>
-                        </div>
-                        <p className="school-name">متوسطة وثانوية نخبة الشمال الأهلية</p>
-                    </div>
-                </div>
+                <SelectionHeader>اختر نوع المراجعة</SelectionHeader>
 
                 {/* Options */}
                 <div className="review-type-options">
                     {contentTypes.map((type) => (
-                        <div
+                        <button
+                            type="button"
                             key={type.id}
-                            className={`review-type-card ${(type.id === 'live-stream' || type.id === 'seat-number' || type.id === 'schedule' || type.id === 'saved-videos') ? 'new-feature-card' : ''}`}
+                            className={`review-type-card option-${type.id}`}
                             onClick={() => handleTypeSelect(type.id)}
                         >
-                            {(type.id === 'live-stream' || type.id === 'seat-number' || type.id === 'schedule' || type.id === 'saved-videos') && (
-                                <div className="new-badge">
-                                    <img
-                                        src={type.iconImage}
-                                        alt={type.name}
-                                        className="new-badge-icon"
-                                    />
-                                    <span className="new-badge-text">
-                                        {type.id === 'schedule' ? 'محدث' : 'جديدنا'}
-                                    </span>
-                                </div>
-                            )}
-                            {type.iconImage && (
-                                <div className="card-icon">
-                                    <img
-                                        src={type.iconImage}
-                                        alt={type.name}
-                                        className="card-icon-image"
-                                    />
-                                </div>
-                            )}
+                            <span className="option-watermark" aria-hidden="true">{type.id === 'all' ? '✦' : type.id === 'solved' ? '✓' : type.id === 'unsolved' ? '?' : '▦'}</span>
+                            <span className="card-icon"><ReviewOptionIcon type={type.id} /></span>
                             <div className="card-content">
                                 <h2 className="card-title">{type.name}</h2>
-                                <p className={`card-description ${type.id === 'electronic' ? 'card-description-phosphorescent' : ''}`}>{type.description}</p>
                             </div>
-                        </div>
+                            <span className="option-arrow" aria-hidden="true">←</span>
+                        </button>
                     ))}
                 </div>
 
-                {/* Back Button */}
-                <div className="review-type-back-section">
-                    <button
-                        className="review-type-back-button"
-                        onClick={navigateBack}
-                    >
-                        <span className="back-icon">←</span>
-                        <span className="back-text">رجوع</span>
-                    </button>
-                </div>
             </div>
 
             {/* Seat Number Lookup Modal */}

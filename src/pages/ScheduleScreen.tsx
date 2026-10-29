@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/Button';
 import { BackButton } from '@/components/BackButton';
 import { selectedGrade, selectedStage } from '@/lib/navigation';
-import { getScheduleByGrade, downloadPDF } from '@/services/reviewService';
+import { subscribePublishedReviewsRefresh, getScheduleByGrade, downloadPDF } from '@/services/reviewService';
 import { getGradeName } from '@/utils/gradeUtils';
 import './ScheduleScreen.css';
 
@@ -24,6 +24,7 @@ export function ScheduleScreen() {
             }
         }
         loadSchedule();
+        const stopPublishedRefresh = subscribePublishedReviewsRefresh(loadSchedule);
 
         // Subscribe to real-time updates
         let channel: any = null;
@@ -123,6 +124,7 @@ export function ScheduleScreen() {
         }
 
         return () => {
+            stopPublishedRefresh();
             if (channel) {
                 (async () => {
                     const { supabase } = await import('@/lib/supabase');

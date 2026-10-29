@@ -86,10 +86,6 @@ export function TermsScreen() {
                     </div>
                 </div>
 
-                {/* Director Name */}
-                <div className="terms-director">
-                    <p className="director-text">مدير المدرسة: محمد نصر الدين</p>
-                </div>
             </div>
         </Layout>
     );

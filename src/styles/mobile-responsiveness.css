@@ -1,0 +1,67 @@
+/* Constrain flex/grid children at their source; do not hide page overflow. */
+.student-ui.stage-layout .stage-main-card { padding-top: 0; gap: 16px; }
+/* Safari's fill-available main height must not push credits below the viewport. */
+.student-ui.stage-layout .layout-main { flex: none; min-height: 0; }
+.student-ui.stage-layout .stage-header { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; width: 100%; direction: rtl; }
+.student-ui.stage-layout .stage-back-button { position: static; grid-column: 1; grid-row: 1; justify-self: start; min-height: 44px; }
+.student-ui.stage-layout .stage-title { grid-column: 2; grid-row: 1; margin: 0; padding: 0; text-align: center; }
+.student-ui.selection-layout.stage-layout .platform-credits { margin-top: 12px; }
+@media (max-width: 640px) {
+    .student-ui.stage-layout .stage-selection { padding: 16px 16px 0; }
+    .student-ui.stage-layout .stage-main-card { padding: 0; gap: 12px; }
+    .student-ui.stage-layout .stage-title { font-size: clamp(20px, 5.5vw, 25px); }
+    .student-ui.stage-layout .stage-back-button { padding-inline: 8px; }
+    .student-ui.stage-layout .stage-cards-container { gap: 12px; }
+    .student-ui.stage-layout .stage-card { min-height: 180px; padding: 18px 20px; }
+    .student-ui.stage-layout .stage-icon-wrapper { width: 52px; height: 52px; margin-bottom: 12px; }
+    .student-ui.stage-layout .stage-name { font-size: 18px; margin-bottom: 6px; }
+    .student-ui.stage-layout .stage-enter { margin-top: 12px; padding-top: 10px; }
+    .student-ui.stage-layout .stage-index { top: 14px; left: 20px; font-size: 64px; }
+    .student-ui.selection-layout.stage-layout .platform-credits { margin-top: 12px; padding: 12px 16px max(12px, env(safe-area-inset-bottom)); }
+    .student-ui.stage-layout .credit-details { gap: 2px; }
+}
+.student-ui.selection-layout .layout-main { flex: none; }
+.student-ui.selection-layout :is(.stage-selection, .grade-selection) { min-height: auto; padding-bottom: 0; }
+.student-ui.selection-layout :is(.stage-main-card, .grade-main-card) { min-height: auto; padding-bottom: 0; }
+.student-ui.selection-layout .platform-credits { margin-top: 24px; }
+.student-ui.welcome-layout .layout-main { flex: none; }
+.student-ui.welcome-layout .welcome-screen.elite-welcome { min-height: auto; flex: none; padding-bottom: 0; }
+.student-ui.welcome-layout .platform-credits { margin-top: 24px; }
+.layout-main > *, .take-test-screen { min-width: 0; }
+.student-management { width: 100%; min-width: 0; }
+.student-management :is(.student-form-card, .student-list-card, .form-group) { min-width: 0; max-width: 100%; }
+.student-management .form-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.student-management .form-input { width: 100%; min-width: 0; }
+.question-review-screen .question-card { display: block; width: 100%; min-width: 0; }
+.question-review-screen :is(.question-body, .question-options, .question-actions) { min-width: 0; max-width: 100%; }
+.question-review-screen .question-options li { flex-wrap: wrap; gap: 8px; overflow-wrap: anywhere; }
+.question-review-screen .question-actions { flex-wrap: wrap; }
+.live-stream-settings-screen :is(.datetime-group, .datetime-inputs, .form-group, .form-input) { min-width: 0; max-width: 100%; }
+.live-stream-settings-screen .datetime-inputs { flex-wrap: wrap; }
+.live-stream-settings-screen :is(.date-input, .time-input) { flex: 1 1 130px; width: 100%; min-width: 0; }
+.take-test-screen { width: 100%; max-width: 900px; }
+.take-test-screen .question-item { width: 100%; max-width: 100%; min-width: 0; }
+.material-card .material-title { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+    .layout-main :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) { min-width: 0; max-width: 100%; font-size: 16px; }
+    .layout-main :is(h1, h2, h3, p, label) { overflow-wrap: anywhere; }
+    .student-management { padding: 20px 16px; }
+    .student-management :is(.student-form-card, .student-list-card) { padding: 20px 16px; }
+    .student-management :is(.student-header, .student-section-header) { flex-wrap: wrap; gap: 16px; }
+    .student-management .student-header h1 { font-size: clamp(22px, 6vw, 30px); }
+    .student-management .upload-section { display: flex; flex-wrap: wrap; gap: 12px; min-width: 0; }
+    .student-management .students-table :is(th, td) { padding: 12px; }
+    .student-management .students-table { min-width: 640px; }
+    .student-management .student-table-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+    .question-review-screen .question-header { display: flex; flex-wrap: wrap; gap: 10px; }
+    .question-review-screen .question-body { overflow-wrap: anywhere; }
+    .question-review-screen .question-actions :is(.edit-btn, .delete-btn) { min-height: 44px; flex: 1 1 100px; padding: 12px; }
+    .live-stream-settings-screen .settings-form { padding: 20px 16px; }
+    .live-stream-settings-screen .url-input-group { flex-wrap: wrap; }
+    .live-stream-settings-screen .url-prefix { width: 100%; padding: 12px; }
+    .take-test-screen .question-item { padding: 22px 16px; }
+    .take-test-screen :is(.question-text, .test-title) { overflow-wrap: anywhere; }
+    .take-test-screen :is(.next-question-btn, .prev-question-btn, .submit-test-btn) { max-width: 100%; min-width: 0; }
+    .admin-upload .video-add-actions { flex-direction: column; }
+    .admin-upload .add-video-link-btn { min-width: 0; min-height: 44px; white-space: normal; overflow-wrap: anywhere; }
+}

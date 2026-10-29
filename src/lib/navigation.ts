@@ -2,13 +2,13 @@ import { atom } from 'nanostores';
 
 export type Screen = 'welcome' | 'terms' | 'stage' | 'grade' | 'reviewType' | 'subject' | 'admin' | 'materials' | 'subjects-management' | 'schedule' | 'videos' | 'subject-videos' | 'electronic' | 'subject-tests' | 'subject-materials' | 'electronic-tests' | 'test-builder' | 'my-tests' | 'add-question' | 'statistics' | 'question-review' | 'live-stream' | 'live-stream-settings' | 'test-data' | 'student-management' | 'saved-videos';
 export type Stage = 'middle' | 'high' | null;
-export type ContentType = 'schedule' | 'solved' | 'unsolved' | 'videos' | 'electronic';
+export type ContentType = 'all' | 'schedule' | 'solved' | 'unsolved' | 'videos' | 'electronic';
 
 export const currentScreen = atom<Screen>('welcome');
 export const selectedStage = atom<Stage>(null);
 export const selectedGrade = atom<number | null>(null);
 export const selectedContentType = atom<ContentType | null>(null);
-export const selectedReviewType = atom<'solved' | 'unsolved' | null>(null); // Keep for backward compatibility
+export const selectedReviewType = atom<'solved' | 'unsolved' | 'all' | null>(null); // Keep for backward compatibility
 export const termsAccepted = atom<boolean>(false);
 export const currentTestId = atom<number | null>(null);
 export const editingQuestionId = atom<number | null>(null);
@@ -49,7 +49,7 @@ export function setGrade(grade: number) {
     navigateTo('reviewType');
 }
 
-export function setReviewType(type: 'solved' | 'unsolved') {
+export function setReviewType(type: 'solved' | 'unsolved' | 'all') {
     selectedReviewType.set(type);
     selectedContentType.set(type);
     navigateTo('subject');
@@ -63,7 +63,7 @@ export function setContentType(type: ContentType) {
         navigateTo('videos');
     } else if (type === 'electronic') {
         navigateTo('electronic');
-    } else if (type === 'solved' || type === 'unsolved') {
+    } else if (type === 'solved' || type === 'unsolved' || type === 'all') {
         selectedReviewType.set(type);
         navigateTo('subject');
     }

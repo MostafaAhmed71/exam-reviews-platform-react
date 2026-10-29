@@ -797,7 +797,7 @@ export function AdminUpload() {
                                     <p className="upload-hint">أو يمكنك إضافة رابط YouTube في القائمة أعلاه</p>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                            <div className="video-add-actions" style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                                 <button
                                     type="button"
                                     className="add-video-link-btn"

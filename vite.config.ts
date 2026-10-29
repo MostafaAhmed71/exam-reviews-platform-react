@@ -2,9 +2,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
+const buildVersion = Date.now().toString()
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), {
+    name: 'platform-build-version',
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: 'version.json', source: JSON.stringify({ version: buildVersion }) })
+    },
+  }],
+  define: { __BUILD_VERSION__: JSON.stringify(buildVersion) },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

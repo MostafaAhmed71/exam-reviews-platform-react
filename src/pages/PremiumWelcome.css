@@ -1,0 +1,66 @@
+/* Welcome-only composition. Shared student screens keep their existing styles. */
+.student-ui .welcome-screen.elite-welcome {
+    flex: 1;
+    min-height: auto;
+    max-width: none;
+    margin: 0;
+    padding: max(16px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 20px;
+    justify-content: flex-start;
+    overflow: hidden;
+    isolation: isolate;
+    background: radial-gradient(ellipse at 50% 30%, #21334a70, transparent 52%), radial-gradient(ellipse at 0% 75%, #27405938, transparent 40%);
+}
+.elite-entry { width: min(100%, 540px); position: relative; z-index: 1; }
+.elite-edge { position: absolute; pointer-events: none; z-index: -1; width: clamp(220px, 66vw, 460px); aspect-ratio: 1; border-radius: 45%; border: 1px solid #e7be702b; box-shadow: 0 0 0 15px #20314950, 0 0 0 40px #1d304540, 0 0 0 41px #e7be7010; }
+.elite-edge-top { top: -140px; right: -185px; transform: rotate(-28deg); }
+.elite-edge-bottom { bottom: 80px; left: -200px; transform: rotate(32deg); }
+.elite-school-header { display: flex; flex-direction: row; direction: rtl; justify-content: space-between; gap: 10px; align-items: center; text-align: left; }
+.elite-school-logo { width: clamp(106px, 30vw, 144px); aspect-ratio: 1; height: auto; object-fit: contain; background: white; padding: 5px; border-radius: 28%; border: 1px solid #f2d59870; box-shadow: 0 0 0 7px #e7be7008, 0 12px 40px #0003; }
+.elite-school-logo { flex-shrink: 0; }
+.elite-school-name { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 0.1em; min-width: 0; margin: 0; line-height: 1.6; font-size: clamp(17px, 4.8vw, 36px); font-weight: 900; color: #f5f6fa; letter-spacing: 0; white-space: nowrap; }
+.elite-school-name strong { color: var(--portal-gold); font-size: inherit; font-weight: 900; }
+.elite-platform-name { margin: 18px 0 0; color: #b9c5d5; font-size: clamp(13px, 3.5vw, 16px); font-weight: 800; line-height: 1.8; }
+.elite-hero { margin-top: 8px; }
+.elite-hero-visual { position: relative; width: 84%; max-width: 390px; margin: 0 auto; aspect-ratio: 480 / 310; }
+.elite-learning-art { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 16px #0002); }
+.elite-art-badge { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 7px 9px; border: 1px solid #e7be7036; border-radius: 10px; background: linear-gradient(135deg, #27394ce8, #15263be8); box-shadow: 0 8px 20px #0002; color: #f3e9d6; font-size: clamp(10px, 2.8vw, 13px); line-height: 1.6; white-space: nowrap; }
+.elite-art-badge svg { width: 17px; height: 17px; flex: 0 0 auto; color: var(--portal-gold); }
+.elite-badge-reviews { top: 12%; left: 2%; transform: rotate(-5deg); }
+.elite-badge-subjects { top: 3%; right: 3%; transform: rotate(5deg); }
+.elite-badge-tests { bottom: 5%; right: 0; transform: rotate(3deg); }
+.elite-hero-copy { text-align: center; margin: 10px auto 0; }
+.elite-hero-copy h2 { margin: 0; color: #f6f7fb; font-size: clamp(25px, 6.65vw, 35px); line-height: 1.65; font-weight: 900; letter-spacing: 0; text-wrap: balance; }
+.elite-hero-copy h2 span { display: block; color: var(--portal-gold); }
+.elite-hero-copy > p { margin: 12px auto 0; max-width: 430px; color: #b9c5d5; font-size: clamp(13px, 3.5vw, 15px); line-height: 1.95; text-wrap: pretty; }
+.elite-entry-actions { display: grid; gap: 13px; margin-top: 14px; }
+.elite-period-card { display: flex; align-items: center; gap: 10px; padding: 15px 13px; min-height: 74px; background: linear-gradient(115deg, #22344a, #19293f); border: 1px solid #e7be7080; border-radius: 16px; box-shadow: inset 0 1px 0 #ffffff05, 0 10px 30px #0001; }
+.elite-period-card p { flex: 1; margin: 0; color: #f2e9d8; font-size: clamp(13px, 3.65vw, 17px); font-weight: 700; line-height: 1.8; text-align: right; }
+.elite-card-icon { width: 32px; height: 32px; flex: 0 0 auto; color: var(--portal-gold); }
+.elite-card-icon svg { width: 100%; height: 100%; }
+.elite-card-arrow { color: var(--portal-gold); flex: 0 0 20px; }
+.elite-card-arrow svg { display: block; width: 20px; height: 20px; }
+.elite-school-card { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 10px; border: 1px solid #ffffff13; border-radius: 12px; background: #15243b80; }
+.elite-school-card svg { width: 23px; height: 23px; flex: 0 0 auto; color: #d8b570; }
+.elite-school-card p { margin: 0; font-size: clamp(13px, 3.8vw, 20px); font-weight: 900; line-height: 1.8; color: #e4ebf5; text-align: right; white-space: nowrap; }
+.student-ui .elite-welcome .elite-start-button.button.primary { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 68px; padding: 12px 18px; margin: 4px 0 0; border-radius: 18px; background: linear-gradient(110deg, #dcb362, #f0cb80); border: 1px solid #f2d699; box-shadow: 0 8px 26px #e7be7025, inset 0 1px 0 #fff5; color: #17263a; font-size: clamp(19px, 5vw, 22px); font-weight: 900; line-height: 1.8; }
+.student-ui .elite-welcome .elite-start-button.button.primary:hover { background: linear-gradient(110deg, #e8bf75, #f7d793); box-shadow: 0 10px 30px #e7be7035; }
+.student-ui .elite-welcome .elite-start-button.button.primary:active { background: #dcb362; }
+.student-ui .elite-welcome .elite-start-button.button.primary { position: relative; justify-content: center; padding-inline: 62px; text-align: center; }
+.elite-cta-arrow { position: absolute; inset-inline-end: 18px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto; border: 1px solid #17263a35; background: #17263a0c; border-radius: 50%; }
+.elite-cta-arrow svg { width: 21px; height: 21px; }
+.elite-entry-features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 7px; }
+.elite-entry-features > span { display: flex; flex-direction: column; align-items: center; gap: 7px; color: #bcc7d6; font-size: clamp(10px, 2.8vw, 13px); font-weight: 600; line-height: 1.8; text-align: center; }
+.elite-entry-features svg { width: 22px; height: 22px; color: var(--portal-gold); }
+@media (min-width: 768px) {
+    .student-ui .welcome-screen.elite-welcome { padding: 24px 32px; }
+    .elite-entry { width: min(100%, 1000px); }
+    .elite-school-logo { width: 132px; }
+    .elite-school-name { margin: 0; }
+    .elite-hero { display: block; margin-top: 12px; }
+    .elite-hero-visual { grid-column: 2; grid-row: 1; }
+    .elite-hero-copy { grid-column: 1; grid-row: 1; text-align: right; margin: 0; }
+    .elite-hero-copy h2 { font-size: clamp(29px, 3vw, 38px); }
+    .elite-hero-copy > p { margin-inline: 0; font-size: 16px; }
+    .elite-entry-actions { max-width: 590px; margin: 14px auto 0; }
+}
+@media (prefers-reduced-motion: reduce) { .elite-start-button { transition: none; } }
